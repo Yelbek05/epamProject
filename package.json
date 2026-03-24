@@ -1,7 +1,6 @@
 {
   "name": "epamproject",
   "version": "1.0.0",
-  "type": "module",
   "description": "JS automated testing project with pattern POM in WDIO",
   "main": "wdio.conf.js",
   "directories": {

@@ -1,4 +1,4 @@
-export const config = {
+exports.config = {
   //
   // ====================
   // Runner Configuration
@@ -49,22 +49,10 @@ export const config = {
   //
   capabilities: [
     {
-      browserName: "chrome",
-      //   "goog:chromeOptions": {
-      //     args: ["--headless", "--disable-gpu", "--window-size=1280,800"],
-      //   },
-      // },
-      // {
-      //   browserName: "firefox",
-      //   "moz:firefoxOptions": {
-      //     args: ["-headless", "-width=1280", "-height=800"],
-      //   },
-      // },
-      // {
-      //   browserName: "MicrosoftEdge",
-      //   "ms:edgeOptions": {
-      //     args: ["--headless", "--disable-gpu", "--window-size=1280,800"],
-      //   },
+      browserName: "firefox",
+    },
+    {
+      browserName: "MicrosoftEdge",
     },
   ],
 
