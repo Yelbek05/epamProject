@@ -2,7 +2,14 @@
 
 Automated testing project for [SauceDemo](https://www.saucedemo.com/) using WebDriverIO with Page Object Model pattern.
 
+## 🎥 Project Showcase
+
+**Video Demonstrations:**
+- [Project Demo 1](https://www.loom.com/share/b44fe48a128d422690ce57827165a716)
+- [Project Demo 2](https://www.loom.com/share/96d00bf78f5d47fa922cffbbd66977d1)
+
 ## Project Structure
+
 
 ```
 epamProject/
