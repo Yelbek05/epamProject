@@ -17,6 +17,14 @@ class ProductPage {
     return $('//button[starts-with(@id,"add-to-cart")]');
   }
 
+  get removeFromCartBtn() {
+    return $('//button[starts-with(@id,"remove")]');
+  }
+
+  get cartBadge() {
+    return $(".shopping_cart_badge");
+  }
+
   get backBtn() {
     return $('//button[@id="back-to-products"]');
   }

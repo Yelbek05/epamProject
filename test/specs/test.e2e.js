@@ -12,13 +12,16 @@ const logger = new Logger();
 
 // Test data - change this to test different products
 const TEST_PRODUCT = "Sauce Labs Fleece Jacket";
+const DEMO_PAUSE_MS = 700;
 
 describe("Dynamic Content Flow", () => {
   beforeEach(async () => {
     await loginPage.open();
+
     await loginPage.login("standard_user", "secret_sauce");
     await expect($("#inventory_container")).toBeDisplayed();
     logger.step("User logged in");
+    await browser.pause(DEMO_PAUSE_MS);
   });
 
   describe("UC-1: Product Details Verification", () => {
@@ -39,6 +42,12 @@ describe("Dynamic Content Flow", () => {
 
       await productPage.addToCart();
       logger.step("Added to cart");
+
+      await expect(productPage.removeFromCartBtn).toBeDisplayed();
+      await expect(productPage.cartBadge).toBeDisplayed();
+      await expect(productPage.cartBadge).toHaveText("1");
+      logger.step("Cart state verified: remove button + badge count is 1");
+      await browser.pause(DEMO_PAUSE_MS);
     });
   });
 
