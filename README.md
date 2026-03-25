@@ -59,52 +59,45 @@ npm install -g allure-commandline
 
 After running tests, Allure results are automatically saved to the `allure-results/` directory.
 
-**Option 1: Generate and serve report (Recommended)**
+**Option 1: Generate and serve report (Most Common)** ⭐
 
 ```bash
 allure serve allure-results
 ```
 
-This will generate the report and start a local server.
+Generates the report and starts a local server automatically.
 
-**Option 2: Generate static report**
+**Option 2: Generate static HTML report**
 
 ```bash
 allure generate allure-results --clean -o allure-report
-allure open allure-report
 ```
 
-**For WSL Users:**
+Creates a static report in the `allure-report/` folder.
 
-The browser won't open automatically. Use one of these methods:
+### Opening Reports (For WSL/Linux Users)
 
-**Method A: VS Code Live Server (Recommended)** ✅
+**Using VS Code Live Server (Recommended)** ✅
+
+If you're using VS Code with the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer):
 
 1. Generate the static report:
    ```bash
    allure generate allure-results --clean -o allure-report
    ```
-2. In VS Code, navigate to `allure-report/index.html`
-3. Right-click on `index.html` → **"Open with Live Server"**
-4. The report will open automatically in your Windows browser
 
-**Method B: Direct file access**
+2. In VS Code Explorer, navigate to `/allure-report/index.html`
 
-1. Open Windows File Explorer
-2. Paste this path in the address bar:
-   ```
-   \\wsl.localhost\Ubuntu\home\wsly\epamProject\allure-report\index.html
-   ```
-3. Press Enter and double-click `index.html` to open in browser
+3. Right-click on `index.html` → Select **"Open with Live Server"**
 
-**Method C: Manual localhost access**
+4. The report opens automatically in your default browser at `http://127.0.0.1:5500/allure-report/index.html`
 
-1. Run `allure open allure-report` or `allure serve allure-results`
-2. Copy the URL from terminal (e.g., `Server started at <http://127.0.0.1:45631>`)
-3. Try these in your Windows browser (in order):
-   - Replace `127.0.0.1` with `localhost`: `http://localhost:45631`
-   - Or use your WSL IP: Check `hostname -I` and use `http://<WSL-IP>:45631`
-4. Press `Ctrl+C` in terminal when done
+**Alternative: Direct File Access**
+
+Open Windows File Explorer and paste:
+```
+\\wsl.localhost\Ubuntu\home\wsly\epamProject\allure-report\index.html
+```
 
 ### Viewing Reports
 
@@ -157,4 +150,8 @@ $('//div[text()="Product Name"]/ancestor::div[@class="inventory_item"]');
 
 ## Test Reports
 
-Reports are displayed in the console using the spec reporter. Screenshots are saved on test failure in the `screenshots/` folder.
+This project uses **Allure Reporter** for detailed HTML reports and **Spec Reporter** for console output during test execution.
+
+- **Console Output:** Test results are displayed in real-time using the spec reporter
+- **Screenshots:** Automatically saved on test failure in the `screenshots/` folder
+- **Allure Reports:** Comprehensive HTML reports with test history, screenshots, and step-by-step execution details (see Allure Reports section above)
