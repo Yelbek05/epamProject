@@ -55,20 +55,27 @@ describe("Dynamic Content Flow", () => {
     it("(Bonus) should open correct URLs when clicking social links", async () => {
       await footerComponent.scrollToFooter();
       const originalWindow = await browser.getWindowHandle();
+      const initialHandles = await browser.getWindowHandles();
       const links = footerComponent.getSocialLinks();
 
       for (const link of links) {
         logger.log(`Testing: ${link.url}`);
         await link.el.click();
 
-        // Wait for new tab
+        // Wait for a newly opened tab/window.
         await browser.waitUntil(
-          async () => (await browser.getWindowHandles()).length === 2,
+          async () =>
+            (await browser.getWindowHandles()).length > initialHandles.length,
           { timeout: 5000 },
         );
 
         const windows = await browser.getWindowHandles();
-        const newWindow = windows.find((w) => w !== originalWindow);
+        const newWindow = windows.find(
+          (w) => w !== originalWindow && !initialHandles.includes(w),
+        );
+        if (!newWindow) {
+          throw new Error(`No new window opened for ${link.url}`);
+        }
 
         await browser.switchToWindow(newWindow);
         await expect(browser).toHaveUrl(expect.stringContaining(link.url));

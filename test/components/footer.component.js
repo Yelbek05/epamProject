@@ -17,7 +17,16 @@ class FooterComponent {
   }
 
   async scrollToFooter() {
-    await this.container.scrollIntoView();
+    await browser.waitUntil(async () => await $("body").isExisting(), {
+      timeout: 5000,
+      timeoutMsg: "Page body did not load before footer check",
+    });
+
+    await browser.execute(() => {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "instant" });
+    });
+
+    await this.container.waitForDisplayed({ timeout: 5000 });
   }
 
   // Returns social links with expected URL patterns

@@ -41,7 +41,9 @@ exports.config = {
   // and 30 processes will get spawned. The property handles how many capabilities
   // from the same test should run tests.
   //
-  maxInstances: 3,
+  // Run one browser worker at a time to avoid intermittent local driver
+  // startup/connectivity timeouts when Edge and Firefox launch together.
+  maxInstances: 1,
   //
   // If you have trouble getting all important capabilities together, check out the
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -94,10 +96,10 @@ exports.config = {
   //
   // Default timeout in milliseconds for request
   // if browser driver or grid doesn't send response
-  connectionRetryTimeout: 120000,
+  connectionRetryTimeout: 180000,
   //
   // Default request retries count
-  connectionRetryCount: 3,
+  connectionRetryCount: 5,
   //
   // Test runner services
   // Services take over a specific job you don't want to take care of. They enhance
@@ -256,9 +258,13 @@ exports.config = {
       await browser.saveScreenshot(`./screenshots/${filename}`);
     }
 
-        // Attach to Allure report
-    const allure = await import("@wdio/allure-reporter").then(m => m.default);
-    allure.addAttachment("Screenshot on Failure", await browser.takeScreenshot(), "image/png");
+    // Attach to Allure report
+    const allure = await import("@wdio/allure-reporter").then((m) => m.default);
+    allure.addAttachment(
+      "Screenshot on Failure",
+      await browser.takeScreenshot(),
+      "image/png",
+    );
   },
 
   /**

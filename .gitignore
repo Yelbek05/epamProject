@@ -16,3 +16,22 @@ screenshots/
 # Allure reports
 allure-results/
 allure-report/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Test coverage and reports
+coverage/
+.nyc_output/
