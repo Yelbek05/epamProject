@@ -12,3 +12,7 @@ logs/
 .tmp/
 screenshots/
 *.log
+
+# Allure reports
+allure-results/
+allure-report/
